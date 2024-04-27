@@ -25,8 +25,13 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void DeleteRow();
+
+    void on_pushButton_4_clicked();
+
 private:
     Ui::MainWindow *ui;
     QList<QList<QString>> allHeroes;
 };
+
 #endif // MAINWINDOW_H

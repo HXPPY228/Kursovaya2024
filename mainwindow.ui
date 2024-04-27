@@ -46,13 +46,26 @@
        <string>Начать</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="geometry">
+       <rect>
+        <x>574</x>
+        <y>670</y>
+        <width>101</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Выход</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="mainpage">
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>510</y>
+        <x>270</x>
+        <y>550</y>
         <width>180</width>
         <height>41</height>
        </rect>
@@ -73,7 +86,7 @@
       <property name="geometry">
        <rect>
         <x>580</x>
-        <y>660</y>
+        <y>670</y>
         <width>90</width>
         <height>29</height>
        </rect>
@@ -90,6 +103,9 @@
         <width>611</width>
         <height>491</height>
        </rect>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::NoSelection</enum>
       </property>
       <property name="sortingEnabled">
        <bool>true</bool>
@@ -125,31 +141,6 @@
       <item>
        <property name="text">
         <string>Выбери героя</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Abaddon</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Alchemist</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Ancient Apparition</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Anti-Mage</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Arc Warden</string>
        </property>
       </item>
      </widget>
@@ -192,7 +183,7 @@
        <rect>
         <x>40</x>
         <y>120</y>
-        <width>331</width>
+        <width>418</width>
         <height>391</height>
        </rect>
       </property>
@@ -210,8 +201,20 @@
       <property name="dragDropOverwriteMode">
        <bool>true</bool>
       </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::NoSelection</enum>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectColumns</enum>
+      </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
        <number>133</number>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>false</bool>
       </attribute>
       <attribute name="verticalHeaderDefaultSectionSize">
        <number>73</number>
@@ -224,6 +227,11 @@
       <column>
        <property name="text">
         <string>Герой</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string/>
        </property>
       </column>
      </widget>

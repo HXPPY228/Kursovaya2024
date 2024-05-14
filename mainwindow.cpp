@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
+    ui->tableWidget->setColumnWidth(0, 133);
+    ui->pushButton_5->setEnabled(false);
 
     allHeroes.append(QList<QString>{"D:/BSUIR/Kursovaya/Pictures/abaddon.jpg", "Abaddon"});
     allHeroes.append(QList<QString>{"D:/BSUIR/Kursovaya/Pictures/alchemist.jpg", "Alchemist"});
@@ -134,8 +136,12 @@ MainWindow::MainWindow(QWidget *parent)
     allHeroes.append(QList<QString>{"D:/BSUIR/Kursovaya/Pictures/zeus.jpg", "Zeus"});
 
     for (int i = 0; i < 124; ++i){
-    ui->comboBox->addItem(allHeroes[i][1]);
+        ui->comboBox->addItem(allHeroes[i][1]);
+
+        AllCounters.append(QList<QString>{allHeroes[i][1], "0.0"});
     }
+
+    AbaddonParsing();
 }
 
 MainWindow::~MainWindow()
@@ -148,6 +154,8 @@ void MainWindow::DeleteRow()
     QPushButton* button = qobject_cast<QPushButton*>(sender());
     int row = ui->tableWidget_2->indexAt(button->pos()).row();
     ui->tableWidget_2->removeRow(row);
+    ui->pushButton_3->setEnabled(true);
+    if (ui->tableWidget_2->rowCount() == 0) ui->pushButton_5->setEnabled(false);
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -164,6 +172,9 @@ void MainWindow::on_pushButton_2_clicked()
     ui->tableWidget->setRowCount(0);
     ui->comboBox->setCurrentIndex(0);
     ui->stackedWidget->setCurrentIndex(0);
+    SelectedHeroes.clear();
+    AllCounters.clear();
+    for (int i = 0; i < 124; ++i) AllCounters.append(QList<QString>{allHeroes[i][1], "0.0"});
 }
 
 void MainWindow::on_pushButton_3_clicked()
@@ -172,14 +183,15 @@ void MainWindow::on_pushButton_3_clicked()
     if (selectedHero == 0) return;
     selectedHero-=1;
     int row = ui->tableWidget_2->rowCount();
-    if (row>=5){
-        QMessageBox::critical(this, "Ошибка", "Не может быть больше 5-ти героев");
+    /*if (row>=5){
+        QMessageBox::information(this, "Ошибка", "Не может быть больше 5-ти героев");
         return;
-    }
+    }*/
+
     QString newHero = allHeroes[selectedHero][1];
     for(int i = 0; i < row; ++i) {
         if(ui->tableWidget_2->item(i, 1)->text() == newHero) {
-            QMessageBox::critical(this, "Ошибка", "Герой уже добавлен");
+            QMessageBox::information(this, "Ошибка", "Герой уже добавлен");
             return;
         }
     }
@@ -194,11 +206,55 @@ void MainWindow::on_pushButton_3_clicked()
     QPushButton* delButton = new QPushButton("Удалить");
     connect(delButton, &QPushButton::clicked, this, &MainWindow::DeleteRow);
     ui->tableWidget_2->setCellWidget(row, 2, delButton);
+    ui->pushButton_5->setEnabled(true);
+    if (row==4) ui->pushButton_3->setEnabled(false);
 }
 
 
 void MainWindow::on_pushButton_4_clicked()
 {
     this->close();
+}
+
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    ui->tableWidget->setRowCount(0);
+
+    SelectedHeroes.append("zxc");
+    SelectedHeroes.clear();
+    for (int i=0; i<ui->tableWidget_2->rowCount(); ++i){
+        SelectedHeroes.append(ui->tableWidget_2->item(i,1)->text());
+    }
+    if (SelectedHeroes.contains("Abaddon")){
+        for (int i=0;i<124;++i){
+            double allCounters = AllCounters[i][1].toDouble();
+            allCounters+=AbaddonCounters[i][1].toDouble();
+            AllCounters[i][1]=QString::number(allCounters);
+        }
+    }
+
+    for (int i = 0; i < 124; ++i) {
+        ui->tableWidget->insertRow(i);
+
+        QPixmap pixmap(allHeroes[i][0]);
+        QTableWidgetItem *item = new QTableWidgetItem;
+        item->setData(Qt::DecorationRole, pixmap);
+        ui->tableWidget->setItem(i, 0, item);
+        ui->tableWidget->setItem(i, 1, new QTableWidgetItem(AllCounters[i][0]));
+        ui->tableWidget->setItem(i, 2, new QTableWidgetItem(AllCounters[i][1]));
+    }
+
+    for (int i=0;i<SelectedHeroes.size();++i){
+        ui->tableWidget->removeRow(0);
+    }
+
+    for(int i = 0; i < ui->tableWidget->rowCount(); ++i) {
+        ui->tableWidget->item(i, 2)->setTextAlignment(Qt::AlignCenter);
+    }
+    ui->tableWidget->sortItems(2, Qt::DescendingOrder);
+
+    AllCounters.clear();
+    for (int i = 0; i < 124; ++i) AllCounters.append(QList<QString>{allHeroes[i][1], "0.0"});
 }
 

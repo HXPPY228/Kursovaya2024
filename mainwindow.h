@@ -9,7 +9,7 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QUrl>
-#include <QTableWidget>
+#include <QMovie>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -38,8 +38,10 @@ private slots:
 
     void on_pushButton_5_clicked();
 
-    void AbaddonParsing();
+    void on_pushButton_6_clicked();
 
+    void AbaddonParsing();
+    void AlchemistParsing();
 private:
     Ui::MainWindow *ui;
     QList<QList<QString>> allHeroes;
@@ -48,6 +50,7 @@ private:
     QNetworkAccessManager *manager = new QNetworkAccessManager(this);
     QList<QList<QString>> AllCounters;
     QList<QList<QString>> AbaddonCounters;
+    QList<QList<QString>> AlchemistCounters;
 };
 
 #endif // MAINWINDOW_H

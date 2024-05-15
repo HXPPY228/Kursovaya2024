@@ -10,6 +10,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->setColumnWidth(0, 133);
     ui->pushButton_5->setEnabled(false);
 
+    QMovie *movie = new QMovie("D:/BSUIR/Kursovaya/Pictures/nowifi.gif");
+    ui->label_gif->setMovie(movie);
+    ui->label_gif->setScaledContents(true);
+    movie->start();
+
     allHeroes.append(QList<QString>{"D:/BSUIR/Kursovaya/Pictures/abaddon.jpg", "Abaddon"});
     allHeroes.append(QList<QString>{"D:/BSUIR/Kursovaya/Pictures/alchemist.jpg", "Alchemist"});
     allHeroes.append(QList<QString>{"D:/BSUIR/Kursovaya/Pictures/ancient_apparition.jpg", "Ancient Apparition"});
@@ -141,7 +146,7 @@ MainWindow::MainWindow(QWidget *parent)
         AllCounters.append(QList<QString>{allHeroes[i][1], "0.0"});
     }
 
-    AbaddonParsing();
+
 }
 
 MainWindow::~MainWindow()
@@ -156,16 +161,21 @@ void MainWindow::DeleteRow()
     ui->tableWidget_2->removeRow(row);
     ui->pushButton_3->setEnabled(true);
     if (ui->tableWidget_2->rowCount() == 0) ui->pushButton_5->setEnabled(false);
+    ui->tableWidget->setRowCount(0);
 }
 
 void MainWindow::on_pushButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
+
+    AbaddonParsing();
+    AlchemistParsing();
 }
 
 
 void MainWindow::on_pushButton_2_clicked()
 {
+    ui->pushButton_5->setEnabled(false);
     ui->tableWidget_2->clearContents();
     ui->tableWidget_2->setRowCount(0);
     ui->tableWidget->clearContents();
@@ -174,19 +184,18 @@ void MainWindow::on_pushButton_2_clicked()
     ui->stackedWidget->setCurrentIndex(0);
     SelectedHeroes.clear();
     AllCounters.clear();
+    AbaddonCounters.clear();
+    AlchemistCounters.clear();
     for (int i = 0; i < 124; ++i) AllCounters.append(QList<QString>{allHeroes[i][1], "0.0"});
 }
 
 void MainWindow::on_pushButton_3_clicked()
 {
+    ui->tableWidget->setRowCount(0);
     int selectedHero = ui->comboBox->currentIndex();
     if (selectedHero == 0) return;
     selectedHero-=1;
     int row = ui->tableWidget_2->rowCount();
-    /*if (row>=5){
-        QMessageBox::information(this, "Ошибка", "Не может быть больше 5-ти героев");
-        return;
-    }*/
 
     QString newHero = allHeroes[selectedHero][1];
     for(int i = 0; i < row; ++i) {
@@ -226,13 +235,31 @@ void MainWindow::on_pushButton_5_clicked()
     for (int i=0; i<ui->tableWidget_2->rowCount(); ++i){
         SelectedHeroes.append(ui->tableWidget_2->item(i,1)->text());
     }
-    if (SelectedHeroes.contains("Abaddon")){
-        for (int i=0;i<124;++i){
-            double allCounters = AllCounters[i][1].toDouble();
-            allCounters+=AbaddonCounters[i][1].toDouble();
-            AllCounters[i][1]=QString::number(allCounters);
+
+    for (int i = 0; i < 124; ++i) {
+        double allCounters = AllCounters[i][1].toDouble();
+        for (QString hero : SelectedHeroes) {
+            int heroIndex = -1;
+            if (hero == "Abaddon") {
+                heroIndex = 0;
+            } else if (hero == "Alchemist") {
+                heroIndex = 1;
+            }
+
+            switch (heroIndex) {
+            case 0: // Abaddon
+                allCounters += AbaddonCounters[i][1].toDouble();
+                break;
+            case 1: // Alchemist
+                allCounters += AlchemistCounters[i][1].toDouble();
+                break;
+            default:
+                break;
+            }
         }
+        AllCounters[i][1] = QString::number(allCounters);
     }
+
 
     for (int i = 0; i < 124; ++i) {
         ui->tableWidget->insertRow(i);
@@ -242,11 +269,10 @@ void MainWindow::on_pushButton_5_clicked()
         item->setData(Qt::DecorationRole, pixmap);
         ui->tableWidget->setItem(i, 0, item);
         ui->tableWidget->setItem(i, 1, new QTableWidgetItem(AllCounters[i][0]));
-        ui->tableWidget->setItem(i, 2, new QTableWidgetItem(AllCounters[i][1]));
-    }
 
-    for (int i=0;i<SelectedHeroes.size();++i){
-        ui->tableWidget->removeRow(0);
+        AllCounters[i][1]=QString::number(AllCounters[i][1].toDouble()/SelectedHeroes.size());
+
+        ui->tableWidget->setItem(i, 2, new QTableWidgetItem(AllCounters[i][1]));
     }
 
     for(int i = 0; i < ui->tableWidget->rowCount(); ++i) {
@@ -254,7 +280,27 @@ void MainWindow::on_pushButton_5_clicked()
     }
     ui->tableWidget->sortItems(2, Qt::DescendingOrder);
 
+    // переделать удаление
+    /*for (int i=0;i<SelectedHeroes.size();++i){
+        ui->tableWidget->removeRow(0);
+    }*/
+    // переделал
+    for (int i=0;i<124-SelectedHeroes.size();++i){
+        foreach (QString name, SelectedHeroes) {
+            if (name==ui->tableWidget->item(i,1)->text()){
+                ui->tableWidget->removeRow(i);
+                --i;
+            }
+        }
+    }
+
     AllCounters.clear();
     for (int i = 0; i < 124; ++i) AllCounters.append(QList<QString>{allHeroes[i][1], "0.0"});
+}
+
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
 }
 

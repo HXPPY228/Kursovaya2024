@@ -167,15 +167,14 @@ void MainWindow::DeleteRow()
 void MainWindow::on_pushButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
-
-    AbaddonParsing();
-    AlchemistParsing();
+    AllHeroParsing();
 }
 
 
 void MainWindow::on_pushButton_2_clicked()
 {
     ui->pushButton_5->setEnabled(false);
+    ui->pushButton_3->setEnabled(true);
     ui->tableWidget_2->clearContents();
     ui->tableWidget_2->setRowCount(0);
     ui->tableWidget->clearContents();
@@ -184,8 +183,131 @@ void MainWindow::on_pushButton_2_clicked()
     ui->stackedWidget->setCurrentIndex(0);
     SelectedHeroes.clear();
     AllCounters.clear();
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     AbaddonCounters.clear();
     AlchemistCounters.clear();
+    AncientApparitionCounters.clear();
+    AntiMageCounters.clear();
+    ArcWardenCounters.clear();
+    AxeCounters.clear();
+    BaneCounters.clear();
+    BatriderCounters.clear();
+    BeastmasterCounters.clear();
+    BloodseekerCounters.clear();
+    BountyHunterCounters.clear();
+    BrewmasterCounters.clear();
+    BristlebackCounters.clear();
+    BroodmotherCounters.clear();
+    CentaurWarrunnerCounters.clear();
+    ChaosKnightCounters.clear();
+    ChenCounters.clear();
+    ClinkzCounters.clear();
+    ClockwerkCounters.clear();
+    CrystalMaidenCounters.clear();
+    DarkSeerCounters.clear();
+    DarkWillowCounters.clear();
+    DawnbreakerCounters.clear();
+    DazzleCounters.clear();
+    DeathProphetCounters.clear();
+    DisruptorCounters.clear();
+    DoomCounters.clear();
+    DragonKnightCounters.clear();
+    DrowRangerCounters.clear();
+    EarthSpiritCounters.clear();
+    EarthshakerCounters.clear();
+    ElderTitanCounters.clear();
+    EmberSpiritCounters.clear();
+    EnchantressCounters.clear();
+    EnigmaCounters.clear();
+    FacelessVoidCounters.clear();
+    GrimstrokeCounters.clear();
+    GyrocopterCounters.clear();
+    HoodwinkCounters.clear();
+    HuskarCounters.clear();
+    InvokerCounters.clear();
+    IoCounters.clear();
+    JakiroCounters.clear();
+    JuggernautCounters.clear();
+    KeeperOfTheLightCounters.clear();
+    KunkkaCounters.clear();
+    LegionCommanderCounters.clear();
+    LeshracCounters.clear();
+    LichCounters.clear();
+    LifestealerCounters.clear();
+    LinaCounters.clear();
+    LionCounters.clear();
+    LoneDruidCounters.clear();
+    LunaCounters.clear();
+    LycanCounters.clear();
+    MagnusCounters.clear();
+    MarciCounters.clear();
+    MarsCounters.clear();
+    MedusaCounters.clear();
+    MeepoCounters.clear();
+    MiranaCounters.clear();
+    MonkeyKingCounters.clear();
+    MorphlingCounters.clear();
+    MuertaCounters.clear();
+    NagaSirenCounters.clear();
+    NaturesProphetCounters.clear();
+    NecrophosCounters.clear();
+    NightStalkerCounters.clear();
+    NyxAssassinCounters.clear();
+    OgreMagiCounters.clear();
+    OmniknightCounters.clear();
+    OracleCounters.clear();
+    OutworldDestroyerCounters.clear();
+    PangolierCounters.clear();
+    PhantomAssassinCounters.clear();
+    PhantomLancerCounters.clear();
+    PhoenixCounters.clear();
+    PrimalBeastCounters.clear();
+    PuckCounters.clear();
+    PudgeCounters.clear();
+    PugnaCounters.clear();
+    QueenOfPainCounters.clear();
+    RazorCounters.clear();
+    RikiCounters.clear();
+    RubickCounters.clear();
+    SandKingCounters.clear();
+    ShadowDemonCounters.clear();
+    ShadowFiendCounters.clear();
+    ShadowShamanCounters.clear();
+    SilencerCounters.clear();
+    SkywrathMageCounters.clear();
+    SlardarCounters.clear();
+    SlarkCounters.clear();
+    SnapfireCounters.clear();
+    SniperCounters.clear();
+    SpectreCounters.clear();
+    SpiritBreakerCounters.clear();
+    StormSpiritCounters.clear();
+    SvenCounters.clear();
+    TechiesCounters.clear();
+    TemplarAssassinCounters.clear();
+    TerrorbladeCounters.clear();
+    TidehunterCounters.clear();
+    TimbersawCounters.clear();
+    TinkerCounters.clear();
+    TinyCounters.clear();
+    TreantProtectorCounters.clear();
+    TrollWarlordCounters.clear();
+    TuskCounters.clear();
+    UnderlordCounters.clear();
+    UndyingCounters.clear();
+    UrsaCounters.clear();
+    VengefulSpiritCounters.clear();
+    VenomancerCounters.clear();
+    ViperCounters.clear();
+    VisageCounters.clear();
+    VoidSpiritCounters.clear();
+    WarlockCounters.clear();
+    WeaverCounters.clear();
+    WindrangerCounters.clear();
+    WinterWyvernCounters.clear();
+    WitchDoctorCounters.clear();
+    WraithKingCounters.clear();
+    ZeusCounters.clear();
     for (int i = 0; i < 124; ++i) AllCounters.append(QList<QString>{allHeroes[i][1], "0.0"});
 }
 
@@ -239,23 +361,256 @@ void MainWindow::on_pushButton_5_clicked()
     for (int i = 0; i < 124; ++i) {
         double allCounters = AllCounters[i][1].toDouble();
         for (QString hero : SelectedHeroes) {
-            int heroIndex = -1;
             if (hero == "Abaddon") {
-                heroIndex = 0;
-            } else if (hero == "Alchemist") {
-                heroIndex = 1;
-            }
-
-            switch (heroIndex) {
-            case 0: // Abaddon
                 allCounters += AbaddonCounters[i][1].toDouble();
-                break;
-            case 1: // Alchemist
+            } else if (hero == "Alchemist") {
                 allCounters += AlchemistCounters[i][1].toDouble();
-                break;
-            default:
-                break;
+            } else if (hero == "Ancient Apparition") {
+                allCounters += AncientApparitionCounters[i][1].toDouble();
+            } else if (hero == "Anti-Mage") {
+                allCounters += AntiMageCounters[i][1].toDouble();
+            } else if (hero == "Arc Warden") {
+                allCounters += ArcWardenCounters[i][1].toDouble();
+            } else if (hero == "Axe") {
+                allCounters += AxeCounters[i][1].toDouble();
+            } else if (hero == "Bane") {
+                allCounters += BaneCounters[i][1].toDouble();
+            } else if (hero == "Batrider") {
+                allCounters += BatriderCounters[i][1].toDouble();
+            } else if (hero == "Beastmaster") {
+                allCounters += BeastmasterCounters[i][1].toDouble();
+            } else if (hero == "Bloodseeker") {
+                allCounters += BloodseekerCounters[i][1].toDouble();
+            } else if (hero == "Bounty Hunter") {
+                allCounters += BountyHunterCounters[i][1].toDouble();
+            } else if (hero == "Brewmaster") {
+                allCounters += BrewmasterCounters[i][1].toDouble();
+            } else if (hero == "Bristleback") {
+                allCounters += BristlebackCounters[i][1].toDouble();
+            } else if (hero == "Broodmother") {
+                allCounters += BroodmotherCounters[i][1].toDouble();
+            } else if (hero == "Centaur Warrunner") {
+                allCounters += CentaurWarrunnerCounters[i][1].toDouble();
+            } else if (hero == "Chaos Knight") {
+                allCounters += ChaosKnightCounters[i][1].toDouble();
+            } else if (hero == "Chen") {
+                allCounters += ChenCounters[i][1].toDouble();
+            } else if (hero == "Clinkz") {
+                allCounters += ClinkzCounters[i][1].toDouble();
+            } else if (hero == "Clockwerk") {
+                allCounters += ClockwerkCounters[i][1].toDouble();
+            } else if (hero == "Crystal Maiden") {
+                allCounters += CrystalMaidenCounters[i][1].toDouble();
+            } else if (hero == "Dark Seer") {
+                allCounters += DarkSeerCounters[i][1].toDouble();
+            } else if (hero == "Dark Willow") {
+                allCounters += DarkWillowCounters[i][1].toDouble();
+            } else if (hero == "Dawnbreaker") {
+                allCounters += DawnbreakerCounters[i][1].toDouble();
+            } else if (hero == "Dazzle") {
+                allCounters += DazzleCounters[i][1].toDouble();
+            } else if (hero == "Death Prophet") {
+                allCounters += DeathProphetCounters[i][1].toDouble();
+            } else if (hero == "Disruptor") {
+                allCounters += DisruptorCounters[i][1].toDouble();
+            } else if (hero == "Doom") {
+                allCounters += DoomCounters[i][1].toDouble();
+            } else if (hero == "Dragon Knight") {
+                allCounters += DragonKnightCounters[i][1].toDouble();
+            } else if (hero == "Drow Ranger") {
+                allCounters += DrowRangerCounters[i][1].toDouble();
+            } else if (hero == "Earth Spirit") {
+                allCounters += EarthSpiritCounters[i][1].toDouble();
+            } else if (hero == "Earthshaker") {
+                allCounters += EarthshakerCounters[i][1].toDouble();
+            } else if (hero == "Elder Titan") {
+                allCounters += ElderTitanCounters[i][1].toDouble();
+            } else if (hero == "Ember Spirit") {
+                allCounters += EmberSpiritCounters[i][1].toDouble();
+            } else if (hero == "Enchantress") {
+                allCounters += EnchantressCounters[i][1].toDouble();
+            } else if (hero == "Enigma") {
+                allCounters += EnigmaCounters[i][1].toDouble();
+            } else if (hero == "Faceless Void") {
+                allCounters += FacelessVoidCounters[i][1].toDouble();
+            } else if (hero == "Grimstroke") {
+                allCounters += GrimstrokeCounters[i][1].toDouble();
+            } else if (hero == "Gyrocopter") {
+                allCounters += GyrocopterCounters[i][1].toDouble();
+            } else if (hero == "Hoodwink") {
+                allCounters += HoodwinkCounters[i][1].toDouble();
+            } else if (hero == "Huskar") {
+                allCounters += HuskarCounters[i][1].toDouble();
+            } else if (hero == "Invoker") {
+                allCounters += InvokerCounters[i][1].toDouble();
+            } else if (hero == "Io") {
+                allCounters += IoCounters[i][1].toDouble();
+            } else if (hero == "Jakiro") {
+                allCounters += JakiroCounters[i][1].toDouble();
+            } else if (hero == "Juggernaut") {
+                allCounters += JuggernautCounters[i][1].toDouble();
+            } else if (hero == "Keeper of the Light") {
+                allCounters += KeeperOfTheLightCounters[i][1].toDouble();
+            } else if (hero == "Kunkka") {
+                allCounters += KunkkaCounters[i][1].toDouble();
+            } else if (hero == "Legion Commander") {
+                allCounters += LegionCommanderCounters[i][1].toDouble();
+            } else if (hero == "Leshrac") {
+                allCounters += LeshracCounters[i][1].toDouble();
+            } else if (hero == "Lich") {
+                allCounters += LichCounters[i][1].toDouble();
+            } else if (hero == "Lifestealer") {
+                allCounters += LifestealerCounters[i][1].toDouble();
+            } else if (hero == "Lina") {
+                allCounters += LinaCounters[i][1].toDouble();
+            } else if (hero == "Lion") {
+                allCounters += LionCounters[i][1].toDouble();
+            } else if (hero == "Lone Druid") {
+                allCounters += LoneDruidCounters[i][1].toDouble();
+            } else if (hero == "Luna") {
+                allCounters += LunaCounters[i][1].toDouble();
+            } else if (hero == "Lycan") {
+                allCounters += LycanCounters[i][1].toDouble();
+            } else if (hero == "Magnus") {
+                allCounters += MagnusCounters[i][1].toDouble();
+            } else if (hero == "Marci") {
+                allCounters += MarciCounters[i][1].toDouble();
+            } else if (hero == "Mars") {
+                allCounters += MarsCounters[i][1].toDouble();
+            } else if (hero == "Medusa") {
+                allCounters += MedusaCounters[i][1].toDouble();
+            } else if (hero == "Meepo") {
+                allCounters += MeepoCounters[i][1].toDouble();
+            } else if (hero == "Mirana") {
+                allCounters += MiranaCounters[i][1].toDouble();
+            } else if (hero == "Monkey King") {
+                allCounters += MonkeyKingCounters[i][1].toDouble();
+            } else if (hero == "Morphling") {
+                allCounters += MorphlingCounters[i][1].toDouble();
+            } else if (hero == "Muerta") {
+                allCounters += MuertaCounters[i][1].toDouble();
+            } else if (hero == "Naga Siren") {
+                allCounters += NagaSirenCounters[i][1].toDouble();
+            } else if (hero == "Nature's Prophet") {
+                allCounters += NaturesProphetCounters[i][1].toDouble();
+            } else if (hero == "Necrophos") {
+                allCounters += NecrophosCounters[i][1].toDouble();
+            } else if (hero == "Night Stalker") {
+                allCounters += NightStalkerCounters[i][1].toDouble();
+            } else if (hero == "Nyx Assassin") {
+                allCounters += NyxAssassinCounters[i][1].toDouble();
+            } else if (hero == "Ogre Magi") {
+                allCounters += OgreMagiCounters[i][1].toDouble();
+            } else if (hero == "Omniknight") {
+                allCounters += OmniknightCounters[i][1].toDouble();
+            } else if (hero == "Oracle") {
+                allCounters += OracleCounters[i][1].toDouble();
+            } else if (hero == "Outworld Destroyer") {
+                allCounters += OutworldDestroyerCounters[i][1].toDouble();
+            } else if (hero == "Pangolier") {
+                allCounters += PangolierCounters[i][1].toDouble();
+            } else if (hero == "Phantom Assassin") {
+                allCounters += PhantomAssassinCounters[i][1].toDouble();
+            } else if (hero == "Phantom Lancer") {
+                allCounters += PhantomLancerCounters[i][1].toDouble();
+            } else if (hero == "Phoenix") {
+                allCounters += PhoenixCounters[i][1].toDouble();
+            } else if (hero == "Primal Beast") {
+                allCounters += PrimalBeastCounters[i][1].toDouble();
+            } else if (hero == "Puck") {
+                allCounters += PuckCounters[i][1].toDouble();
+            } else if (hero == "Pudge") {
+                allCounters += PudgeCounters[i][1].toDouble();
+            } else if (hero == "Pugna") {
+                allCounters += PugnaCounters[i][1].toDouble();
+            } else if (hero == "Queen of Pain") {
+                allCounters += QueenOfPainCounters[i][1].toDouble();
+            } else if (hero == "Razor") {
+                allCounters += RazorCounters[i][1].toDouble();
+            } else if (hero == "Riki") {
+                allCounters += RikiCounters[i][1].toDouble();
+            } else if (hero == "Rubick") {
+                allCounters += RubickCounters[i][1].toDouble();
+            } else if (hero == "Sand King") {
+                allCounters += SandKingCounters[i][1].toDouble();
+            } else if (hero == "Shadow Demon") {
+                allCounters += ShadowDemonCounters[i][1].toDouble();
+            } else if (hero == "Shadow Fiend") {
+                allCounters += ShadowFiendCounters[i][1].toDouble();
+            } else if (hero == "Shadow Shaman") {
+                allCounters += ShadowShamanCounters[i][1].toDouble();
+            } else if (hero == "Silencer") {
+                allCounters += SilencerCounters[i][1].toDouble();
+            } else if (hero == "Skywrath Mage") {
+                allCounters += SkywrathMageCounters[i][1].toDouble();
+            } else if (hero == "Slardar") {
+                allCounters += SlardarCounters[i][1].toDouble();
+            } else if (hero == "Slark") {
+                allCounters += SlarkCounters[i][1].toDouble();
+            } else if (hero == "Snapfire") {
+                allCounters += SnapfireCounters[i][1].toDouble();
+            } else if (hero == "Sniper") {
+                allCounters += SniperCounters[i][1].toDouble();
+            } else if (hero == "Spectre") {
+                allCounters += SpectreCounters[i][1].toDouble();
+            } else if (hero == "Spirit Breaker") {
+                allCounters += SpiritBreakerCounters[i][1].toDouble();
+            } else if (hero == "Storm Spirit") {
+                allCounters += StormSpiritCounters[i][1].toDouble();
+            } else if (hero == "Sven") {
+                allCounters += SvenCounters[i][1].toDouble();
+            } else if (hero == "Techies") {
+                allCounters += TechiesCounters[i][1].toDouble();
+            } else if (hero == "Templar Assassin") {
+                allCounters += TemplarAssassinCounters[i][1].toDouble();
+            } else if (hero == "Terrorblade") {
+                allCounters += TerrorbladeCounters[i][1].toDouble();
+            } else if (hero == "Tidehunter") {
+                allCounters += TidehunterCounters[i][1].toDouble();
+            } else if (hero == "Timbersaw") {
+                allCounters += TimbersawCounters[i][1].toDouble();
+            } else if (hero == "Tinker") {
+                allCounters += TinkerCounters[i][1].toDouble();
+            } else if (hero == "Tiny") {
+                allCounters += TinyCounters[i][1].toDouble();
+            } else if (hero == "Treant Protector") {
+                allCounters += TreantProtectorCounters[i][1].toDouble();
+            } else if (hero == "Troll Warlord") {
+                allCounters += TrollWarlordCounters[i][1].toDouble();
+            } else if (hero == "Tusk") {
+                allCounters += TuskCounters[i][1].toDouble();
+            } else if (hero == "Underlord") {
+                allCounters += UnderlordCounters[i][1].toDouble();
+            } else if (hero == "Undying") {
+                allCounters += UndyingCounters[i][1].toDouble();
+            } else if (hero == "Ursa") {
+                allCounters += UrsaCounters[i][1].toDouble();
+            } else if (hero == "Vengeful Spirit") {
+                allCounters += VengefulSpiritCounters[i][1].toDouble();
+            } else if (hero == "Venomancer") {
+                allCounters += VenomancerCounters[i][1].toDouble();
+            } else if (hero == "Viper") {
+                allCounters += ViperCounters[i][1].toDouble();
+            } else if (hero == "Visage") {
+                allCounters += VisageCounters[i][1].toDouble();
+            } else if (hero == "Void Spirit") {
+                allCounters += VoidSpiritCounters[i][1].toDouble();
+            } else if (hero == "Warlock") {
+                allCounters += WarlockCounters[i][1].toDouble();
+            } else if (hero == "Weaver") {
+                allCounters += WeaverCounters[i][1].toDouble();
+            } else if (hero == "Windranger") {
+                allCounters += WindrangerCounters[i][1].toDouble();
+            } else if (hero == "Winter Wyvern") {
+                allCounters += WinterWyvernCounters[i][1].toDouble();
+            } else if (hero == "Witch Doctor") {
+                allCounters += WitchDoctorCounters[i][1].toDouble();
+            } else if (hero == "Wraith King") {
+                allCounters += WraithKingCounters[i][1].toDouble();
+            } else if (hero == "Zeus") {
+                allCounters += ZeusCounters[i][1].toDouble();
             }
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         }
         AllCounters[i][1] = QString::number(allCounters);
     }
@@ -278,21 +633,27 @@ void MainWindow::on_pushButton_5_clicked()
     for(int i = 0; i < ui->tableWidget->rowCount(); ++i) {
         ui->tableWidget->item(i, 2)->setTextAlignment(Qt::AlignCenter);
     }
+
+    for (int i = ui->tableWidget->rowCount() - 1; i >= 0; --i) {
+        QTableWidgetItem *item = ui->tableWidget->item(i, 2);
+        if (item && item->text().toDouble() < 0) {
+            ui->tableWidget->removeRow(i);
+        }
+    }
+
     ui->tableWidget->sortItems(2, Qt::DescendingOrder);
 
+
     // переделать удаление
-    /*for (int i=0;i<SelectedHeroes.size();++i){
-        ui->tableWidget->removeRow(0);
-    }*/
-    // переделал
-    for (int i=0;i<124-SelectedHeroes.size();++i){
-        foreach (QString name, SelectedHeroes) {
+    // переделал || это хуйня норм удаление выше
+    /*for (int i=0;i<124-SelectedHeroes.size();++i){
+        for (QString name : SelectedHeroes) {
             if (name==ui->tableWidget->item(i,1)->text()){
                 ui->tableWidget->removeRow(i);
                 --i;
             }
         }
-    }
+    }*/
 
     AllCounters.clear();
     for (int i = 0; i < 124; ++i) AllCounters.append(QList<QString>{allHeroes[i][1], "0.0"});

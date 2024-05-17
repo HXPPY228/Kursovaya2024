@@ -15,6 +15,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_gif->setScaledContents(true);
     movie->start();
 
+    QMovie *movie1 = new QMovie("D:/BSUIR/Kursovaya/Pictures/loading.gif");
+    ui->label_loading->setMovie(movie1);
+    ui->label_loading->setScaledContents(true);
+    movie1->start();
+
     allHeroes.append(QList<QString>{"D:/BSUIR/Kursovaya/Pictures/abaddon.jpg", "Abaddon"});
     allHeroes.append(QList<QString>{"D:/BSUIR/Kursovaya/Pictures/alchemist.jpg", "Alchemist"});
     allHeroes.append(QList<QString>{"D:/BSUIR/Kursovaya/Pictures/ancient_apparition.jpg", "Ancient Apparition"});
@@ -146,7 +151,6 @@ MainWindow::MainWindow(QWidget *parent)
         AllCounters.append(QList<QString>{allHeroes[i][1], "0.0"});
     }
 
-
 }
 
 MainWindow::~MainWindow()
@@ -166,8 +170,12 @@ void MainWindow::DeleteRow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
-    AllHeroParsing();
+    if (!parsed){
+        AllHeroParsing();
+        ui->stackedWidget->setCurrentIndex(3);
+    }else {
+        ui->stackedWidget->setCurrentIndex(1);
+    }
 }
 
 
@@ -184,7 +192,7 @@ void MainWindow::on_pushButton_2_clicked()
     SelectedHeroes.clear();
     AllCounters.clear();
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    AbaddonCounters.clear();
+    /*AbaddonCounters.clear();
     AlchemistCounters.clear();
     AncientApparitionCounters.clear();
     AntiMageCounters.clear();
@@ -307,7 +315,7 @@ void MainWindow::on_pushButton_2_clicked()
     WinterWyvernCounters.clear();
     WitchDoctorCounters.clear();
     WraithKingCounters.clear();
-    ZeusCounters.clear();
+    ZeusCounters.clear();*/
     for (int i = 0; i < 124; ++i) AllCounters.append(QList<QString>{allHeroes[i][1], "0.0"});
 }
 

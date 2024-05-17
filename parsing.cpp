@@ -29,8 +29,10 @@ void MainWindow::GenericHeroParsing(const QString &heroName, QList<QList<QString
                 heroCounters.append(QList<QString>{textTable->cellAt(row, 1).firstCursorPosition().block().text(), textTable->cellAt(row, 3).firstCursorPosition().block().text()});
             }
             heroCounters.append(QList<QString>{heroName, "1000.0%"});
+            qDebug() << ++numberOfParsed << heroName.toLower();
 
-            // Сортировка списка счетчиков этого героя
+            ui->label_5->setText(QString::number(numberOfParsed)+ " / 124");
+
             std::sort(heroCounters.begin(), heroCounters.end(), [](const QList<QString> &a, const QList<QString> &b) {
                 return a.first() < b.first();
             });
@@ -40,6 +42,11 @@ void MainWindow::GenericHeroParsing(const QString &heroName, QList<QList<QString
                 double counterValue = heroCounters[i][1].toDouble();
                 counterValue = 100 - counterValue;
                 heroCounters[i][1] = QString::number(counterValue);
+            }
+            if (numberOfParsed==124){
+                ui->stackedWidget->setCurrentIndex(1);
+                //ui->label_5->setText("0 / 124");
+                parsed = true;
             }
 
         }

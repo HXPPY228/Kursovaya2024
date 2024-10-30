@@ -77,9 +77,9 @@
      <widget class="QTableWidget" name="tableWidget">
       <property name="geometry">
        <rect>
-        <x>620</x>
+        <x>660</x>
         <y>60</y>
-        <width>452</width>
+        <width>454</width>
         <height>491</height>
        </rect>
       </property>
@@ -243,7 +243,7 @@
      <widget class="QPushButton" name="pushButton_5">
       <property name="geometry">
        <rect>
-        <x>480</x>
+        <x>500</x>
         <y>120</y>
         <width>111</width>
         <height>41</height>
@@ -269,7 +269,7 @@
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>620</x>
+        <x>660</x>
         <y>10</y>
         <width>591</width>
         <height>41</height>

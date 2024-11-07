@@ -31,19 +31,19 @@ void MainWindow::GenericHeroParsing(const QString &heroName, QList<QList<QString
             heroCounters.append(QList<QString>{heroName, "1000.0%"});
             qDebug() << ++numberOfParsed << heroName.toLower();
 
-            ui->label_5->setText(QString::number(numberOfParsed)+ " / 124");
+            ui->label_5->setText(QString::number(numberOfParsed)+ " / 125");
 
             std::sort(heroCounters.begin(), heroCounters.end(), [](const QList<QString> &a, const QList<QString> &b) {
                 return a.first() < b.first();
             });
 
-            for (int i=0; i<124;++i){
+            for (int i=0; i<heroNumber;++i){
                 heroCounters[i][1].chop(1);
                 double counterValue = heroCounters[i][1].toDouble();
                 counterValue = 100 - counterValue;
                 heroCounters[i][1] = QString::number(counterValue);
             }
-            if (numberOfParsed==124){
+            if (numberOfParsed==heroNumber){
                 ui->stackedWidget->setCurrentIndex(1);
                 //ui->label_5->setText("0 / 124");
                 parsed = true;
@@ -140,6 +140,7 @@ void MainWindow::AllHeroParsing()
     GenericHeroParsing("Queen-Of-Pain", QueenOfPainCounters);
     GenericHeroParsing("Razor", RazorCounters);
     GenericHeroParsing("Riki", RikiCounters);
+    GenericHeroParsing("Ringmaster", RingmasterCounters);
     GenericHeroParsing("Rubick", RubickCounters);
     GenericHeroParsing("Sand-King", SandKingCounters);
     GenericHeroParsing("Shadow-Demon", ShadowDemonCounters);

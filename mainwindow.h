@@ -47,7 +47,7 @@ private:
     Ui::MainWindow *ui;
     QList<QList<QString>> allHeroes;
     QList<QString> SelectedHeroes;
-
+    int heroNumber = 125;
     int numberOfParsed=0;
     bool parsed = false;
     QNetworkAccessManager *manager = new QNetworkAccessManager(this);
@@ -137,6 +137,7 @@ private:
     QList<QList<QString>> QueenOfPainCounters;
     QList<QList<QString>> RazorCounters;
     QList<QList<QString>> RikiCounters;
+    QList<QList<QString>> RingmasterCounters;
     QList<QList<QString>> RubickCounters;
     QList<QList<QString>> SandKingCounters;
     QList<QList<QString>> ShadowDemonCounters;

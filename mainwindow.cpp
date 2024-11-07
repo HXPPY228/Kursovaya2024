@@ -109,6 +109,7 @@ MainWindow::MainWindow(QWidget *parent)
     allHeroes.append(QList<QString>{":/img/Pictures/qvopa.jpg", "Queen of Pain"});
     allHeroes.append(QList<QString>{":/img/Pictures/razor.jpg", "Razor"});
     allHeroes.append(QList<QString>{":/img/Pictures/riki.jpg", "Riki"});
+    allHeroes.append(QList<QString>{":/img/Pictures/ringmaster.jpg", "Ringmaster"});
     allHeroes.append(QList<QString>{":/img/Pictures/rubick.jpg", "Rubick"});
     allHeroes.append(QList<QString>{":/img/Pictures/sk.jpg", "Sand King"});
     allHeroes.append(QList<QString>{":/img/Pictures/shd.jpg", "Shadow Demon"});
@@ -150,7 +151,7 @@ MainWindow::MainWindow(QWidget *parent)
     allHeroes.append(QList<QString>{":/img/Pictures/papich.jpg", "Wraith King"});
     allHeroes.append(QList<QString>{":/img/Pictures/zeus.jpg", "Zeus"});
 
-    for (int i = 0; i < 124; ++i){
+    for (int i = 0; i < heroNumber; ++i){
         ui->comboBox->addItem(allHeroes[i][1]);
 
         AllCounters.append(QList<QString>{allHeroes[i][1], "0.0"});
@@ -196,7 +197,7 @@ void MainWindow::on_pushButton_2_clicked()
     ui->stackedWidget->setCurrentIndex(0);
     SelectedHeroes.clear();
     AllCounters.clear();
-    for (int i = 0; i < 124; ++i) AllCounters.append(QList<QString>{allHeroes[i][1], "0.0"});
+    for (int i = 0; i < heroNumber; ++i) AllCounters.append(QList<QString>{allHeroes[i][1], "0.0"});
 }
 
 void MainWindow::on_pushButton_3_clicked()
@@ -246,7 +247,7 @@ void MainWindow::on_pushButton_5_clicked()
         SelectedHeroes.append(ui->tableWidget_2->item(i,1)->text());
     }
 
-    for (int i = 0; i < 124; ++i) {
+    for (int i = 0; i < heroNumber; ++i) {
         double allCounters = AllCounters[i][1].toDouble();
         for (QString hero : SelectedHeroes) {
             if (hero == "Abaddon") {
@@ -417,6 +418,8 @@ void MainWindow::on_pushButton_5_clicked()
                 allCounters += RazorCounters[i][1].toDouble();
             } else if (hero == "Riki") {
                 allCounters += RikiCounters[i][1].toDouble();
+            } else if (hero == "Ringmaster") {
+                allCounters += RingmasterCounters[i][1].toDouble();
             } else if (hero == "Rubick") {
                 allCounters += RubickCounters[i][1].toDouble();
             } else if (hero == "Sand King") {
@@ -504,7 +507,7 @@ void MainWindow::on_pushButton_5_clicked()
     }
 
 
-    for (int i = 0; i < 124; ++i) {
+    for (int i = 0; i < heroNumber; ++i) {
         ui->tableWidget->insertRow(i);
 
         QPixmap pixmap(allHeroes[i][0]);
@@ -532,19 +535,8 @@ void MainWindow::on_pushButton_5_clicked()
     ui->tableWidget->sortItems(2, Qt::DescendingOrder);
 
 
-    // переделать удаление
-    // переделал || это хуйня норм удаление выше
-    /*for (int i=0;i<124-SelectedHeroes.size();++i){
-        for (QString name : SelectedHeroes) {
-            if (name==ui->tableWidget->item(i,1)->text()){
-                ui->tableWidget->removeRow(i);
-                --i;
-            }
-        }
-    }*/
-
     AllCounters.clear();
-    for (int i = 0; i < 124; ++i) AllCounters.append(QList<QString>{allHeroes[i][1], "0.0"});
+    for (int i = 0; i < heroNumber; ++i) AllCounters.append(QList<QString>{allHeroes[i][1], "0.0"});
 }
 
 

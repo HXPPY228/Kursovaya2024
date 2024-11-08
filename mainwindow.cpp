@@ -71,6 +71,7 @@ MainWindow::MainWindow(QWidget *parent)
     allHeroes.append(QList<QString>{":/img/Pictures/urnero.jpg", "Juggernaut"});
     allHeroes.append(QList<QString>{":/img/Pictures/kotl.jpg", "Keeper of the Light"});
     allHeroes.append(QList<QString>{":/img/Pictures/kunkka.jpg", "Kunkka"});
+    allHeroes.append(QList<QString>{":/img/Pictures/kez.jpg", "Kez"});
     allHeroes.append(QList<QString>{":/img/Pictures/lc.jpg", "Legion Commander"});
     allHeroes.append(QList<QString>{":/img/Pictures/leshrak.jpg", "Leshrac"});
     allHeroes.append(QList<QString>{":/img/Pictures/lich.jpg", "Lich"});
@@ -342,6 +343,8 @@ void MainWindow::on_pushButton_5_clicked()
                 allCounters += KeeperOfTheLightCounters[i][1].toDouble();
             } else if (hero == "Kunkka") {
                 allCounters += KunkkaCounters[i][1].toDouble();
+            } else if (hero == "Kez") {
+                allCounters += KezCounters[i][1].toDouble();
             } else if (hero == "Legion Commander") {
                 allCounters += LegionCommanderCounters[i][1].toDouble();
             } else if (hero == "Leshrac") {

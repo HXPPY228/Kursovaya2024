@@ -31,7 +31,7 @@ void MainWindow::GenericHeroParsing(const QString &heroName, QList<QList<QString
             heroCounters.append(QList<QString>{heroName, "1000.0%"});
             qDebug() << ++numberOfParsed << heroName.toLower();
 
-            ui->label_5->setText(QString::number(numberOfParsed)+ " / 125");
+            ui->label_5->setText(QString::number(numberOfParsed)+ " / 126");
 
             std::sort(heroCounters.begin(), heroCounters.end(), [](const QList<QString> &a, const QList<QString> &b) {
                 return a.first() < b.first();
@@ -102,6 +102,7 @@ void MainWindow::AllHeroParsing()
     GenericHeroParsing("Juggernaut", JuggernautCounters);
     GenericHeroParsing("Keeper-of-the-Light", KeeperOfTheLightCounters);
     GenericHeroParsing("Kunkka", KunkkaCounters);
+    GenericHeroParsing("Kez", KezCounters);
     GenericHeroParsing("Legion-Commander", LegionCommanderCounters);
     GenericHeroParsing("Leshrac", LeshracCounters);
     GenericHeroParsing("Lich", LichCounters);
